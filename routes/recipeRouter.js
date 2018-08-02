@@ -1,7 +1,8 @@
 const express = require('express');
+const recipeController = require('../controllers/recipeController');
+const viewController = require('../controllers/viewController');
 
 const recipeRouter = express.Router();
-
 
 // temp for testing
 const showJSON = (req, res) => {
@@ -17,14 +18,16 @@ const handle404 = (err, req, res, next) => {
 
 recipeRouter.route('/')
   // .post(showJSON)
-  .get(showJSON);
+  .get(recipeController.index, viewController.showAll);
 
 // recipeRouter.route('/:id')
 //   .exports(showJSON)
 //   .use(showJSON)
 //   .delete(showJSON);
 
-// recipeRouter.get('/:id/edit', showJSON);
+recipeRouter.get('/:id/edit', (req, res) => {
+  res.send('Display edit submition form');
+});
 recipeRouter.get('/new', (req, res) => {
   res.send('Display New submition form');
 });

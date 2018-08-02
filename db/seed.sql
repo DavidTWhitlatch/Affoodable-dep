@@ -13,5 +13,5 @@ INSERT INTO ingredients ( name )
 VALUES ( 'play doh' );
 
 -- match ingredients to recipes
-INSERT INTO recipes_ingredients ( recipe_id, ingredients_id )
+INSERT INTO recipes_ingredients ( recipe_id, ingredient_id )
 VALUES ( 1, 1 );

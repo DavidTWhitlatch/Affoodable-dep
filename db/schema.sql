@@ -29,7 +29,7 @@ CREATE TABLE fridge
 (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id),
-  ingredients_id INT REFERENCES ingredients(id),
+  ingredient_id INT REFERENCES ingredients(id),
   quantity INT
 );
 
@@ -37,5 +37,5 @@ CREATE TABLE recipes_ingredients
 (
   id SERIAL PRIMARY KEY,
   recipe_id INT REFERENCES recipes(id),
-  ingredients_id INT REFERENCES ingredients(id)
+  ingredient_id INT REFERENCES ingredients(id)
 );

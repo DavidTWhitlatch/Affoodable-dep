@@ -1,0 +1,25 @@
+<%- include('/partials/head') %>
+
+  <form action="http://localhost:3000/recipes" method="POST">
+
+    <div class="field">
+      <label class="label">Name</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Type the dish name here" name="author" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Directions</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="type out the directions here" name="quote_text"></textarea>
+      </div>
+    </div>
+
+    <hr/>
+    <div class="control">
+      <input class="button is-info pull-right is-large" type="submit" />
+    </div>
+  </form>
+
+<%- include('/partials/foot') %>

@@ -1,11 +1,16 @@
 const express = require('express');
+const logger = require('morgan');
+
 const recipeRouter = require('./routes/recipeRouter');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+app.set('view engine', 'ejs');
+app.use(logger('dev'));
+
 app.get('/', (req, res) => {
-  res.send('Affoodable');
+  res.render('index');
 });
 
 app.use('/recipes', recipeRouter);

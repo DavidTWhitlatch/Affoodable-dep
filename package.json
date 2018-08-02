@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon server.js",
     "setup": "psql -f db/setup.sql",
-    "inspect": "npx nodemon --inspect-brk server.js"
+    "debug": "npx nodemon --inspect-brk server.js"
   },
   "repository": {
     "type": "git",
