@@ -1,0 +1,41 @@
+{
+  "name": "Affoodable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon server.js",
+    "setup": "psql -f db/setup.sql",
+    "inspect": "npx nodemon --inspect-brk server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidTWhitlatch/Affoodable.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidTWhitlatch/Affoodable/issues"
+  },
+  "homepage": "https://github.com/DavidTWhitlatch/Affoodable#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.0",
+    "node-fetch": "^2.2.0",
+    "passport": "^0.4.0",
+    "pg-promise": "^8.4.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "nodemon": "^1.18.3"
+  }
+}
