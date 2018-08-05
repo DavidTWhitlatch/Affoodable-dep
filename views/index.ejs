@@ -1,7 +1,13 @@
 <%- include('./partials/head') %>
 
-<button type="button">My Fridge</button>
-<button type="button">Search Recipes</button>
-<button type="button">Add New Recipe</button>
+<form action="recipes">
+  <input type="submit" value="Find Recipes" />
+</form>
+<form action="fridge">
+  <input type="submit" value="My Fridge" />
+</form>
+<form action="recipes/new">
+  <input type="submit" value="Create New Recipe" />
+</form>
 
 <%- include('./partials/foot') %>

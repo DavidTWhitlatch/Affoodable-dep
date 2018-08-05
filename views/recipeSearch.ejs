@@ -1,0 +1,35 @@
+<%- include('./partials/head') %>
+
+<h1>Recipe Search Page</h1>
+
+<form action="http://localhost:3000/recipes/search" method="get">
+  <div class="columns">
+    <div class="column is-two-thirds">
+      <section class="">
+        <select name="attribute">
+          <option value="r">Recipe Name</option>
+          <option value="i">Ingredients</option>
+        </select>
+        <div class="field">
+          <label class="label">Input</label>
+          <div class="control">
+            <textarea class="textarea" placeholder="Don't eat yellow snow" name="input_text"></textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <hr/>
+  <div class="control">
+    <input class="button is-info pull-right is-large" type="submit" />
+  </div>
+</form>
+
+<% recipes.forEach((recipe) => { %>
+
+  <h2><%= recipe.recipe_title %></h2>
+  <h4><%= recipe.ingredients %></h4>
+  <h4><%= recipe.directions %></h4>
+<% }) %>
+
+<%- include('./partials/foot') %>

@@ -22,7 +22,8 @@ CREATE TABLE recipes
 (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) UNIQUE,
-  content TEXT
+  content TEXT,
+  isVisible BOOLEAN DEFAULT 't'
 );
 
 CREATE TABLE fridge

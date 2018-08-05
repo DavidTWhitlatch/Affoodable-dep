@@ -1,13 +1,13 @@
 module.exports = {
   showAll(req, res) {
-    res.format({
-      html() {
-        res.render('index.ejs');
-      },
-
-      json() {
-        res.json(res.locals.data);
-      },
-    });
+    debugger;
+    res.render('recipeSearch', { recipes: res.locals.data });
   },
+  showHome(req, res) {
+    res.render('index');
+  },
+  showForm(req, res) {
+    res.render('recipeForm');
+  },
+  
 };

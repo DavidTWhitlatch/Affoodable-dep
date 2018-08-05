@@ -20,6 +20,8 @@ recipeRouter.route('/')
   // .post(showJSON)
   .get(recipeController.index, viewController.showAll);
 
+recipeRouter.route('/search').get(recipeController.getSome, viewController.showAll);
+
 // recipeRouter.route('/:id')
 //   .exports(showJSON)
 //   .use(showJSON)
@@ -28,9 +30,7 @@ recipeRouter.route('/')
 recipeRouter.get('/:id/edit', (req, res) => {
   res.send('Display edit submition form');
 });
-recipeRouter.get('/new', (req, res) => {
-  res.send('Display New submition form');
-});
+recipeRouter.get('/new', viewController.showForm);
 
 recipeRouter.use(handle404);
 
