@@ -22,3 +22,6 @@ VALUES ( 1, 1 ),
 ( 2, 1 ),
 ( 3, 2 ),
 ( 3, 3 );
+
+INSERT INTO users ( name, password_digest )
+VALUES ( 'zane', '$2b$11$TV1/IcP7szIS5om..KsF8OWWJwedJOx5iCC.8hVlaVU.p/gUu4vqC');

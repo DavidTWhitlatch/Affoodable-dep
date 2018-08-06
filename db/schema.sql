@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS ingredients;
 CREATE TABLE users
 (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) UNIQUE,
+  name VARCHAR(255),
   password_digest VARCHAR(255),
   date_created TIMESTAMP DEFAULT NOW()
 );
