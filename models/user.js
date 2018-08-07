@@ -1,8 +1,6 @@
 const db = require('../config/connection');
 
-
 const findByUsername = (username) => {
-  debugger;
   const queryPromise = db.one(`
         SELECT * 
         FROM users
@@ -12,7 +10,6 @@ const findByUsername = (username) => {
 };
 
 const createUser = (user) => {
-  debugger;
   const queryPromise = db.one(`
     INSERT INTO users ( name, password_digest )
     VALUES ($/name/, $/password_digest/)

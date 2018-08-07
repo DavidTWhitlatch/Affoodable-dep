@@ -1,19 +1,22 @@
 <%- include('./partials/head') %>
+<%- include('./partials/nav', { user }) %>
+<!-- <figure class="image is-fullwidth">
+  <img src="/imgs/kitchen2-01.svg">
+</figure> -->
 
 <div id="index">
-        <img src="Smiling_Face_Emoji_large.png" alt="">
         <button class="button is-warning"><a href="/auth/login">Login</a></button>
         <button class="button is-success"><a href="/auth/register">Register</a></button>
     </div>
 
 
-<form action="recipes">
+<form action="/recipes">
   <input type="submit" value="Find Recipes" />
 </form>
-<form action="fridge">
+<form action="/fridge">
   <input type="submit" value="My Fridge" />
 </form>
-<form action="recipes/new">
+<form action="/recipes/new">
   <input type="submit" value="Create New Recipe" />
 </form>
 

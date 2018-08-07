@@ -15,14 +15,15 @@ CREATE TABLE users
 CREATE TABLE ingredients
 (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255)
+  name VARCHAR(255) UNIQUE
 );
 
 CREATE TABLE recipes
 (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) UNIQUE,
+  name VARCHAR(255),
   content TEXT,
+  creator_id INT REFERENCES users(id),
   isVisible BOOLEAN DEFAULT 't'
 );
 

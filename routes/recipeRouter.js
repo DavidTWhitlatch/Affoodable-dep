@@ -17,19 +17,19 @@ const handle404 = (err, req, res, next) => {
 };
 
 recipeRouter.route('/')
-  // .post(showJSON)
+  .post(recipeController.checkIngredients, recipeController.addIngredients, recipeController.addRecipe, recipeController.addRecipeIngredients)
   .get(recipeController.index, viewController.showAll);
 
-recipeRouter.route('/search').get(recipeController.getSome, viewController.showAll);
+recipeRouter.route('/search')
+  .get(recipeController.getSome, viewController.showAll);
 
 // recipeRouter.route('/:id')
-//   .exports(showJSON)
-//   .use(showJSON)
 //   .delete(showJSON);
 
 recipeRouter.get('/:id/edit', (req, res) => {
   res.send('Display edit submition form');
 });
+
 recipeRouter.get('/new', viewController.showForm);
 
 recipeRouter.use(handle404);

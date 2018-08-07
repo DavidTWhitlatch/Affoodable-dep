@@ -1,13 +1,11 @@
 module.exports = {
   showAll(req, res) {
-    debugger;
-    res.render('recipeSearch', { recipes: res.locals.data });
+    res.render('recipeSearch', { recipes: res.locals.data, user: req.session.user });
   },
   showHome(req, res) {
-    res.render('index');
+    res.render('index', { user: { name: 'Login' } });
   },
   showForm(req, res) {
-    res.render('recipeForm');
+    res.render('recipeForm', { user: req.session.user });
   },
-  
 };

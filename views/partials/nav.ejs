@@ -1,7 +1,7 @@
 <nav class="navbar is-link" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
-          <i class="fab fa-instagram fa-fw"></i>quotestagram
+          Afoodable
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -11,55 +11,14 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <!-- navbar items -->
-          <a class="navbar-item">
-            Home
-          </a>
-          <a class="navbar-item is-active">
-            Quotes
-          </a>
-          <a class="navbar-item">
-            Tags
-          </a>
-
-
-          <!-- navbar items -->
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              Filter quotes by:
-            </a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
-                Jokes
-              </a>
-              <a class="navbar-item">
-                Things
-              </a>
-              <a class="navbar-item">
-                Advice
-              </a>
-              <hr class="navbar-divider">
-              <div class="navbar-item">
-                Version 0.7.1
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"><i class="fas fa-user fa-fw"></i>&nbsp;<%= user.username %>
+          <a class="navbar-link" ><i class="fas fa-user fa-fw"></i>&nbsp;<%= user.name %>
           </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item">Dashboard</a>
-            <a class="navbar-item">Profile</a>
-            <a class="navbar-item">Settings</a>
-            <hr class="navbar-divider" />
             <a class="navbar-item">Logout</a>
           </div>
         </div>

@@ -1,18 +1,26 @@
 <%- include('./partials/head') %>
+<%- include('./partials/nav', { user }) %>
 
   <form action="http://localhost:3000/recipes" method="POST">
 
     <div class="field">
       <label class="label">Name</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Type the dish name here" name="author" />
+        <input class="input" type="text" placeholder="Type the dish name here" name="name" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Ingredients</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="type out the Ingredients here" name="ingredients"></textarea>
       </div>
     </div>
 
     <div class="field">
       <label class="label">Directions</label>
       <div class="control">
-        <textarea class="textarea" placeholder="type out the directions here" name="quote_text"></textarea>
+        <textarea class="textarea" placeholder="type out the directions here" name="content"></textarea>
       </div>
     </div>
 

@@ -35,7 +35,6 @@ app.use(session({
   saveUninitialized: false,
 }));
 
-
 app.use('/auth', authRouter);
 
 app.use('/users', userRouter);

@@ -14,7 +14,6 @@ function checkPassword(loginAttempt, userInfo) {
 }
 
 function login(req, res, next) {
-  debugger;
   const loginAttempt = {
     username: req.body.username,
     password: req.body.password,
@@ -37,7 +36,6 @@ function login(req, res, next) {
 }
 
 function register(req, res, next) {
-  debugger;
   const salt = parseInt(process.env.SALT);
   const hash = bcrypt.hashSync(req.body.password, salt);
   const user = {
@@ -53,7 +51,6 @@ function register(req, res, next) {
       }
 
       req.session.user = userData;
-      debugger;
       next();
     })
     .catch((err) => {
