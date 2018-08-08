@@ -1,4 +1,3 @@
-// bcrypt will be used to hash the plain text password (register phase) and compare password_digest (login phase)
 const bcrypt = require('bcrypt');
 const db = require('../../models/user');
 const authView = require('./authViewController');
@@ -45,9 +44,8 @@ function register(req, res, next) {
 
   db.createUser(user)
     .then((userData) => {
-      console.log(userData);
       if (!userData) {
-        throw { message: 'Try again :(' }
+        throw { message: 'Try again' }
       }
       req.session.user = userData;
 
@@ -56,8 +54,8 @@ function register(req, res, next) {
     .catch((err) => {
       authView.registerError(req, res, next);
     });
-  }
-  
+}
+
 function logout(req, res, next) {
   // destroy session
   // next will be called with either an error or undefined.

@@ -16,7 +16,7 @@
           <% debugger; %>
           <% if (user.id === recipe.creator_id) { %>
           <button class="button is-warning"><a href="/edit">edit</a></button>
-          <form method="POST" action="/users/profile?_method=DELETE">
+          <form method="POST" action="/<%= recipe.id %>?_method=DELETE">
             <div class="field">
               <p class="control">
                 <input type='submit' value='DELETE' class="button is-success" />
