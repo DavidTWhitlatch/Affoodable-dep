@@ -59,16 +59,18 @@ function newIngredient(ingredient) {
 }
 
 function findIngredient(ingredient) {
-  return db.any('SELECT name FROM ingredients WHERE name = $1', ingredient);
+  return db.any('SELECT * FROM ingredients WHERE name = $1', ingredient);
 }
 
 function save(recipe) {
-  return db.one(`INSERT INTO recipe ( name, content, creator_id)
-    Values $/name/, $/content/, $/creator_id/
+  return db.one(`INSERT INTO recipes ( name, content)
+    Values ($/name/, $/content/)
     RETURNING *`, recipe);
 }
 
 function matchIngredient(recipe, ingredient) {
+  console.log(recipe);
+  console.log(ingredient);
   return db.one(`INSERT INTO recipes_ingredients (ingredient_id, recipe_id)
     VALUES ( $1, $2 )
     RETURNING *`, [ingredient.id, recipe.id]);

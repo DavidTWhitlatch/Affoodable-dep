@@ -25,10 +25,23 @@
   </div>
 </form>
 
+<section class="section">
+    <div class="container">
 <% recipes.forEach((recipe) => { %>
-  <h2><%= recipe.recipe_title %></h2>
-  <h4><%= recipe.ingredients %></h4>
-  <h4><%= recipe.directions %></h4>
+
+<div class="columns is-half">
+	<div class="column">
+      <h1 class="title"><%= recipe.recipe_title %></h1>
+      <h2 class="subtitle">
+        <%= recipe.ingredients %>
+      </h2>
+      <h2 class="subtitle">
+        <%= recipe.directions %>
+      </h2>
+	</div>
+</div>
 <% }) %>
+    </div>
+  </section>
 
 <%- include('./partials/foot') %>

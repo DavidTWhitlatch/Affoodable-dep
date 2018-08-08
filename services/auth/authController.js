@@ -49,15 +49,15 @@ function register(req, res, next) {
       if (!userData) {
         throw { message: 'Try again :(' }
       }
-
       req.session.user = userData;
+
       next();
     })
     .catch((err) => {
       authView.registerError(req, res, next);
     });
-}
-
+  }
+  
 function logout(req, res, next) {
   // destroy session
   // next will be called with either an error or undefined.

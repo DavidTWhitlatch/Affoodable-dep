@@ -17,7 +17,7 @@ const handle404 = (err, req, res, next) => {
 };
 
 recipeRouter.route('/')
-  .post(recipeController.checkIngredients, recipeController.addIngredients, recipeController.addRecipe, recipeController.addRecipeIngredients)
+  .post(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.addRecipe, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
   .get(recipeController.index, viewController.showAll);
 
 recipeRouter.route('/search')

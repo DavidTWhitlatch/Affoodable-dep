@@ -23,17 +23,29 @@ module.exports = {
   checkIngredients(req, res, next) {
     debugger;
     const ingArr = req.body.ingredients.split(' ');
-    const promiseArr = ingArr.map((ing) => {
+    const promiseArr = [];
+    ingArr.forEach((ing, idx) => {
       db.findIngredient(ing)
         .then((ingData) => {
-          if (!ingData) {
-            return db.newIngredient(ing);
+          debugger;
+          if (ingData.length === 0) {
+            debugger;
+            promiseArr.push(db.newIngredient(ing));
+          } else {
+            promiseArr.push(db.findIngredient(ing));
+          };
+          if (idx === ingArr.length - 1) {
+            res.locals.ingArr = promiseArr;
+            next();
           }
         });
     });
-    Promise.all(promiseArr)
+  },
+
+  resolveIngredientPromises(req, res, next) {
+    Promise.all(res.locals.ingArr)
       .then((data) => {
-        console.log(data);
+        res.locals.ingredients = data;
         next();
       });
   },
@@ -50,7 +62,6 @@ module.exports = {
   },
 
   addRecipe(req, res, next) {
-    debugger;
     db.save({ ...req.body, creator_id: req.session.user.id })
       .then((resData) => {
         res.locals.recipe = resData;
@@ -59,11 +70,18 @@ module.exports = {
   },
 
   addRecipeIngredients(req, res, next) {
-    debugger;
-    const promiseArr = res.locals.ingredients.map((ing) => {
-      return db.matchIngredient(res.locals.recipe, ing);
+    const promiseArr = [];
+    res.locals.ingredients.forEach((ing, idx) => {
+      promiseArr.push(db.matchIngredient(res.locals.recipe, ing));
+      if (idx === res.locals.ingredients.length - 1) {
+        res.locals.joinArr = promiseArr;
+        next();
+      }
     });
-    Promise.all(promiseArr)
+  },
+
+  resolveJoinerPromises(req, res, next) {
+    Promise.all(res.locals.joinArr)
       .then((data) => {
         res.redirect('/recipes');
       });
