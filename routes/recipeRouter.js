@@ -11,6 +11,11 @@ const handle404 = (err, req, res, next) => {
   // next();
 };
 
+recipeRouter.get('/new', viewController.showForm);
+
+recipeRouter.route('/search')
+.get(recipeController.getSome, viewController.showAll);
+
 recipeRouter.get('/:id/edit', (req, res) => {
   res.send('Display edit submition form');
 });
@@ -18,14 +23,8 @@ recipeRouter.get('/:id/edit', (req, res) => {
 recipeRouter.route('/:id')
   .get(recipeController.getOne, viewController.showOne)
   .put(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.updateRecipe,
-    
     recipeController.removeRecipeIngredients, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
   .delete(recipeController.destroy, recipeController.index, viewController.showAll);
-
-recipeRouter.route('/search')
-  .get(recipeController.getSome, viewController.showAll);
-
-recipeRouter.get('/new', viewController.showForm);
 
 recipeRouter.route('/')
   .post(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.addRecipe, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
