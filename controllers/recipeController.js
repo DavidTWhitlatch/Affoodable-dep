@@ -20,16 +20,23 @@ module.exports = {
       .catch(e => next(e));
   },
 
+  getOne(req, res, next) {
+    const recipeId = req.params.id;
+    db.findById(recipeId)
+      .then((recipe) => {
+        res.locals.data = recipe;
+        next();
+      })
+      .catch(e => next(e));
+  },
+
   checkIngredients(req, res, next) {
-    debugger;
     const ingArr = req.body.ingredients.split(' ');
     const promiseArr = [];
     ingArr.forEach((ing, idx) => {
       db.findIngredient(ing)
         .then((ingData) => {
-          debugger;
           if (ingData.length === 0) {
-            debugger;
             promiseArr.push(db.newIngredient(ing));
           } else {
             promiseArr.push(db.findIngredient(ing));
@@ -47,18 +54,19 @@ module.exports = {
       .then((data) => {
         res.locals.ingredients = data;
         next();
-      });
+      })
+      .catch(e => next(e));
   },
 
   addIngredients(req, res, next) {
-    debugger;
     const ingArr = req.body.ingredients.split(' ');
     const promiseArr = ingArr.map(ing => db.findIngredient(ing));
     Promise.all(promiseArr)
       .then((resArr) => {
         res.locals.ingredients = resArr;
         next();
-      });
+      })
+      .catch(e => next(e));
   },
 
   addRecipe(req, res, next) {
@@ -66,7 +74,13 @@ module.exports = {
       .then((resData) => {
         res.locals.recipe = resData;
         next();
-      });
+      })
+      .catch(e => next(e));
+  },
+
+  updateRecipe(req, res, next) {
+    db.update(req.params.id, req.body)
+      .catch(e => next(e));
   },
 
   addRecipeIngredients(req, res, next) {
@@ -84,7 +98,24 @@ module.exports = {
     Promise.all(res.locals.joinArr)
       .then((data) => {
         res.redirect('/recipes');
-      });
+      })
+      .catch(e => next(e));
+  },
+
+  removeRecipeIngredients(req, res, next) {
+    db.removeMatchIngredient(req.params.id)
+      .then((data) => {
+        next();
+      })
+      .catch(e => next(e));
+  },
+
+  destroy(req, res, next) {
+    db.destroy(req.params.id)
+      .then(() => {
+        next();
+      })
+      .catch(e => next(e));
   },
 
 };

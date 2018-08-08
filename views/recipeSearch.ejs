@@ -1,46 +1,54 @@
 <%- include('./partials/head') %>
 <%- include('./partials/nav', { user }) %>
 
-<h1>Recipe Search Page</h1>
-
-<form action="http://localhost:3000/recipes/search" method="get">
-  <div class="columns">
-    <div class="column is-two-thirds">
-      <section class="">
-        <select name="attribute">
-          <option value="recipe_title">Recipe Name</option>
-          <option value="ingredients">Ingredients</option>
-        </select>
-        <div class="field">
-          <div class="control">
-            <textarea class="textarea" placeholder="type here" name="input_text"></textarea>
-          </div>
+<section class="section">
+  <div class="container">
+    <h1 class="title">Recipe Search Page</h1>
+    <form action="http://localhost:3000/recipes/search" method="get">
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <section class="">
+            <div class="control">
+              <div class="select">
+                <select class="is-focused" name="attribute">
+                  <option value="recipe_title">Recipe Name</option>
+                  <option value="ingredients">Ingredients</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" placeholder="type here" name="input_text"></textarea>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
+      </div>
+      <div class="control">
+        <input class="button is-info pull-right is-large" type="submit" />
+      </div>
+    </form>
   </div>
+</section>
+
   <hr/>
-  <div class="control">
-    <input class="button is-info pull-right is-large" type="submit" />
-  </div>
-</form>
 
 <section class="section">
     <div class="container">
-<% recipes.forEach((recipe) => { %>
-
-<div class="columns is-half">
-	<div class="column">
-      <h1 class="title"><%= recipe.recipe_title %></h1>
-      <h2 class="subtitle">
-        <%= recipe.ingredients %>
-      </h2>
-      <h2 class="subtitle">
-        <%= recipe.directions %>
-      </h2>
-	</div>
-</div>
-<% }) %>
+      <div class="columns is-multiline">
+      <% recipes.forEach((recipe) => { %>
+	      <div class="column is-half">
+          <h1 class="title"><a href="./recipes/<%= recipe.id %>"><%= recipe.recipe_title %></a></h1>
+          <hr/>
+          <h2 class="subtitle">
+            <%= recipe.ingredients %>
+          </h2>
+          <h2 class="subtitle">
+            <%= recipe.directions %>
+          </h2>
+        </div>
+      <% }) %>
+      </div>
     </div>
   </section>
 

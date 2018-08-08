@@ -4,11 +4,6 @@ const viewController = require('../controllers/viewController');
 
 const recipeRouter = express.Router();
 
-// temp for testing
-const showJSON = (req, res) => {
-  res.json(res.locals.data);
-};
-
 // middleware to handle 404 errors
 const handle404 = (err, req, res, next) => {
   console.error(err);
@@ -16,21 +11,25 @@ const handle404 = (err, req, res, next) => {
   // next();
 };
 
-recipeRouter.route('/')
-  .post(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.addRecipe, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
-  .get(recipeController.index, viewController.showAll);
-
-recipeRouter.route('/search')
-  .get(recipeController.getSome, viewController.showAll);
-
-// recipeRouter.route('/:id')
-//   .delete(showJSON);
-
 recipeRouter.get('/:id/edit', (req, res) => {
   res.send('Display edit submition form');
 });
 
+recipeRouter.route('/:id')
+  .get(recipeController.getOne, viewController.showOne)
+  .put(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.updateRecipe,
+    
+    recipeController.removeRecipeIngredients, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
+  .delete(recipeController.destroy, recipeController.index, viewController.showAll);
+
+recipeRouter.route('/search')
+  .get(recipeController.getSome, viewController.showAll);
+
 recipeRouter.get('/new', viewController.showForm);
+
+recipeRouter.route('/')
+  .post(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.addRecipe, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
+  .get(recipeController.index, viewController.showAll);
 
 recipeRouter.use(handle404);
 

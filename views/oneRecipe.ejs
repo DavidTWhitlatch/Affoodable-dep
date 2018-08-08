@@ -1,8 +1,32 @@
 <%- include('./partials/head') %>
 <%- include('./partials/nav', { user }) %>
 
-<h2><%= recipe.recipe_title %></h2>
-  <h4><%= recipe.ingredients %></h4>
-  <h4><%= recipe.directions %></h4>
+<section class="section">
+    <div class="container">
+      <div class="columns">
+	      <div class="column">
+          <h1 class="title"><a href="./<%= recipe.id %>"><%= recipe.recipe_title %></a></h1>
+          <hr/>
+          <h2 class="subtitle">
+            <%= recipe.ingredients %>
+          </h2>
+          <h2 class="subtitle">
+            <%= recipe.directions %>
+          </h2>
+          <% debugger; %>
+          <% if (user.id === recipe.creator_id) { %>
+          <button class="button is-warning"><a href="/edit">edit</a></button>
+          <form method="POST" action="/users/profile?_method=DELETE">
+            <div class="field">
+              <p class="control">
+                <input type='submit' value='DELETE' class="button is-success" />
+              </p>
+            </div>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <%- include('./partials/foot') %>
