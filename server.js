@@ -25,12 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 app.use(methodOverride('_method'));
 
-// set the secret using the SERVER_SECRET key stored in the .env file
-app.set('server_secret', process.env.SERVER_SECRET);
-
 // allow app to create session for users using SERVER_SECRET key. Other options are boilerplate.
 app.use(session({
-  secret: app.get('server_secret'),
+  secret: app.get(process.env.SERVER_SECRET),
   resave: false,
   saveUninitialized: false,
 }));
@@ -39,9 +36,9 @@ app.use('/auth', authRouter);
 
 app.use('/users', userRouter);
 app.use('/recipes', recipeRouter);
-// app.use('/', homeRouter);
+app.use('/', homeRouter);
 // app.use('/ingredients', ingredientRouter);
-app.use('/', (req, res) => res.send('hello world'));
+// app.use('/', (req, res) => res.send('hello world'));
 app.listen(PORT, () => {
   console.log(`Server up and listening on port ${PORT}, in ${app.get('env')} mode.`);
 });
