@@ -1,6 +1,6 @@
 <nav class="navbar is-link" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
+        <a class="navbar-item" href="/users/profile">
           Affoodable
         </a>
 
@@ -15,12 +15,24 @@
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" ><i class="fas fa-user fa-fw"></i>&nbsp;<%= user.name %>
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item">Logout</a>
+        <% if(user.name !== "Login"){ %>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" ><i class="fas fa-user fa-fw"></i>&nbsp;<%= user.name %>
+            </a>
+            <div class="navbar-dropdown is-right">
+              <a class="navbar-item" href="/recipes">Find Recipes</a>
+              <a class="navbar-item" href="/recipes/new">Create New Recipe</a>
+              <a class="navbar-item">
+                <form method="POST" action="/users/profile?_method=DELETE">
+                  <input type='submit' value='Logout' />
+                </form>
+              </a>
+            </div>
           </div>
+        <% } else { %>
+        <div class="navbar-item">
+          <button class="button is-warning"><a href="/auth/login">Login</a></button>
         </div>
+        <% } %>
       </div>
     </nav>

@@ -2,3 +2,9 @@
   font-family: 'Cookie', cursive;
   font-size: 3em;
 }
+
+.landing-img {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50vh;
+}

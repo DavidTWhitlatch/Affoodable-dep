@@ -38,6 +38,6 @@ CREATE TABLE fridge
 CREATE TABLE recipes_ingredients
 (
   id SERIAL PRIMARY KEY,
-  recipe_id INT REFERENCES recipes(id) ON DELETE CASCADE,
+  recipe_id INT REFERENCES recipes(id),
   ingredient_id INT REFERENCES ingredients(id)
 );

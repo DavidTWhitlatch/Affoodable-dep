@@ -1,20 +1,8 @@
 <%- include('./partials/head') %>
 <%- include('./partials/nav', { user }) %>
 
-<div id="index">
-        <button class="button is-warning"><a href="/auth/login">Login</a></button>
-        <button class="button is-success"><a href="/auth/register">Register</a></button>
-    </div>
-
-
-<form action="/recipes">
-  <input type="submit" value="Find Recipes" />
-</form>
-<form action="/recipes/new">
-  <input type="submit" value="Create New Recipe" />
-</form>
 <figure class="image is-fullwidth">
-  <img src="/imgs/kitchen2-01.svg">
+  <img class ="landing-img" src="/imgs/kitchen2-01.svg">
 </figure> 
 
 <%- include('./partials/foot') %>

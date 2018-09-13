@@ -45,11 +45,13 @@ module.exports = {
             res.locals.ingArr = promiseArr;
             next();
           }
-        });
+        })
+        .catch(e => next(e));
     });
   },
 
   resolveIngredientPromises(req, res, next) {
+
     Promise.all(res.locals.ingArr)
       .then((data) => {
         res.locals.ingredients = data;
@@ -74,12 +76,15 @@ module.exports = {
       .then((resData) => {
         res.locals.recipe = resData;
         next();
-      })
-      .catch(e => next(e));
+      });
   },
 
   updateRecipe(req, res, next) {
     db.update(req.params.id, req.body)
+      .then((resData) => {
+        res.locals.recipe = resData;
+        next();
+      })
       .catch(e => next(e));
   },
 
@@ -104,7 +109,7 @@ module.exports = {
 
   removeRecipeIngredients(req, res, next) {
     db.removeMatchIngredient(req.params.id)
-      .then((data) => {
+      .then(() => {
         next();
       })
       .catch(e => next(e));

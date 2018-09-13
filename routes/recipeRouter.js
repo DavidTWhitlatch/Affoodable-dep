@@ -14,20 +14,23 @@ const handle404 = (err, req, res, next) => {
 recipeRouter.get('/new', viewController.showForm);
 
 recipeRouter.route('/search')
-.get(recipeController.getSome, viewController.showAll);
+  .get(recipeController.getSome, viewController.showAll);
 
-recipeRouter.get('/:id/edit', (req, res) => {
-  res.send('Display edit submition form');
-});
+recipeRouter.route('/:id/edit')
+  .get(recipeController.getOne, viewController.showEdit);
 
 recipeRouter.route('/:id')
   .get(recipeController.getOne, viewController.showOne)
-  .put(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.updateRecipe,
-    recipeController.removeRecipeIngredients, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
+  .put(recipeController.checkIngredients, recipeController.resolveIngredientPromises,
+    recipeController.updateRecipe, recipeController.removeRecipeIngredients,
+    recipeController.addRecipeIngredients, recipeController.resolveIngredientPromises,
+    recipeController.getOne, viewController.showOne)
   .delete(recipeController.destroy, recipeController.index, viewController.showAll);
 
 recipeRouter.route('/')
-  .post(recipeController.checkIngredients, recipeController.resolveIngredientPromises, recipeController.addRecipe, recipeController.addRecipeIngredients, recipeController.index, viewController.showAll)
+  .post(recipeController.checkIngredients, recipeController.resolveIngredientPromises,
+    recipeController.addRecipe, recipeController.addRecipeIngredients,
+    recipeController.index, viewController.showAll)
   .get(recipeController.index, viewController.showAll);
 
 recipeRouter.use(handle404);

@@ -12,4 +12,7 @@ module.exports = {
   showForm(req, res) {
     res.render('recipeForm', { user: req.session.user });
   },
+  showEdit(req, res) {
+    res.render('recipeEdit', { recipe: res.locals.data, user: req.session.user });
+  },
 };

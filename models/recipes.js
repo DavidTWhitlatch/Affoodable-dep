@@ -2,8 +2,8 @@ const db = require('../config/connection');
 
 function findAll() {
   return db.many(`
-    SELECT id, recipe_title, directions, ingredients, creator_id FROM
-    (SELECT r.id AS id,
+        SELECT id, recipe_title, directions, ingredients, creator_id FROM
+        (SELECT r.id AS id,
         r.name AS recipe_title,
         r.content AS directions,
         r.creator_id AS creator_id,
@@ -21,8 +21,9 @@ function findAll() {
 function findByInput(att, input) {
   const inputArr = input.split(' ');
   const newArr = inputArr.map(idx => `%${idx}%`);
-  let query = `SELECT id, recipe_title, directions, ingredients, creator_id FROM
-    (SELECT r.id AS id
+  let query = `
+        SELECT id, recipe_title, directions, ingredients, creator_id FROM
+        (SELECT r.id AS id,
         r.name AS recipe_title,
         r.content AS directions,
         r.creator_id AS creator_id,
@@ -39,6 +40,7 @@ function findByInput(att, input) {
 }
 
 function findById(id) {
+  debugger;
   return db.one(`
       SELECT id, recipe_title, directions, ingredients, creator_id FROM
       (SELECT r.id AS id,
@@ -66,7 +68,7 @@ function findRecipeId(id) {
 
 function destroy(id) {
   return db.none(`
-      DELETE FROM quotes
+      DELETE FROM recipes
       WHERE id = $1
     `, id);
 }
@@ -88,9 +90,10 @@ function save(recipe, creatorId) {
 }
 
 function update(id, recipe) {
-  return db.one(`UPDATE recipes ( name, content)
-    Values ($/name/, $/content/)
-    WHERE id = $/id/`, { id, ...recipe });
+  return db.one(`UPDATE recipes
+    SET ( name, content ) = ($/name/, $/content/)
+    WHERE id = $/id/
+    RETURNING *`, { id, ...recipe });
 }
 
 function matchIngredient(recipe, ingredient) {
@@ -100,7 +103,7 @@ function matchIngredient(recipe, ingredient) {
 }
 
 function removeMatchIngredient(id) {
-  return db.many(`DELETE FROM recipes_ingredients
+  return db.none(`DELETE FROM recipes_ingredients
   WHERE recipe_id = $1
   `, id);
 }
