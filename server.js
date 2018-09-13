@@ -25,9 +25,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 app.use(methodOverride('_method'));
 
+// set the secret using the SERVER_SECRET key stored in the .env file
+app.set('server_secret', process.env.SERVER_SECRET);
+
 // allow app to create session for users using SERVER_SECRET key. Other options are boilerplate.
 app.use(session({
-  secret: app.get(process.env.SERVER_SECRET),
+  secret: app.get('server_secret'),
   resave: false,
   saveUninitialized: false,
 }));
