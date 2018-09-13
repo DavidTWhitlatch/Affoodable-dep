@@ -5,14 +5,15 @@ const homeRouter = express.Router();
 
 // middleware to handle 404 errors
 const handle404 = (err, req, res, next) => {
+console.log('thing');
   console.error(err);
-  res.sendStatus(404);
+  res.sendStatus(500);
   // next();
 };
 
+homeRouter.use(handle404);
 homeRouter.route('/')
   .get(viewController.showHome);
 
-homeRouter.use(handle404);
 
 module.exports = homeRouter;
