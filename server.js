@@ -26,6 +26,7 @@ app.use(flash());
 app.use(methodOverride('_method'));
 
 // set the secret using the SERVER_SECRET key stored in the .env file
+console.log(process.env.SERVER_SECRET);
 app.set('server_secret', process.env.SERVER_SECRET);
 
 // allow app to create session for users using SERVER_SECRET key. Other options are boilerplate.
