@@ -10,7 +10,6 @@ const flash = require('connect-flash');
 
 const homeRouter = require('./routes/homeRouter');
 const recipeRouter = require('./routes/recipeRouter');
-// const ingredientRouter = require('./routes/ingredientRouter');
 const authRouter = require('./services/auth/authRouter');
 const userRouter = require('./routes/userRouter');
 
@@ -41,8 +40,6 @@ app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/recipes', recipeRouter);
 app.use('/', homeRouter);
-// app.use('/ingredients', ingredientRouter);
-// app.use('/', (req, res) => res.send('hello world'));
 app.listen(PORT, () => {
   console.log(`Server up and listening on port ${PORT}, in ${app.get('env')} mode.`);
 });
