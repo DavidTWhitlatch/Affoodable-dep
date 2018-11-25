@@ -40,7 +40,6 @@ function findByInput(att, input) {
 }
 
 function findById(id) {
-  debugger;
   return db.one(`
       SELECT id, recipe_title, directions, ingredients, creator_id FROM
       (SELECT r.id AS id,

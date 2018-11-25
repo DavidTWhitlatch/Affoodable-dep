@@ -17,7 +17,7 @@ function login(req, res, next) {
     username: req.body.username,
     password: req.body.password,
   };
-  console.log('got this far');
+
   db.findByUsername(loginAttempt.username)
     .then(user => checkPassword(loginAttempt, user))
     .then((isValidAttempt) => {
